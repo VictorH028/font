@@ -11,7 +11,7 @@ clang++ font.cpp -o font
 
 ./font
 ```
-![[./img/font_img.jpg]]
+![help menu preview](./img/font_img.jpg)
 
 
 
