@@ -17,7 +17,7 @@ You can compete with the compilation that you like the most
 gcc font.cpp -o font
 ```
 ```bash
-./font
+mv font $PREFIX/bin/
 ```
 ![help menu preview](./img/font_img.jpg)
 
