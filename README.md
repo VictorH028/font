@@ -1,10 +1,14 @@
-#FONT
+###Font
 
 
-#intalation
+
+
+#Requirements
 ```bash
 apt install git 
 ```
+
+#Installation
 ```bash
 git clone https://github.com/VictorH028/font.git 
 ```
@@ -27,4 +31,5 @@ You can get totally free font from the following link
 https://fontmeme.com/fuentes/fuente-gimp-mousewriting/
 
 #nota 
+
 restart the terminal to load the changes
