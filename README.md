@@ -1,5 +1,8 @@
 ## Font
 
+Fonts are a really important part of the user experience.
+
+
 # Requirements
 ```bash
 apt install git 
@@ -15,7 +18,7 @@ cd font
 You can compete with the compilation that you like the most
 
 ```bash
-gcc font.cpp -o font
+clang++ font.cpp -o font
 ```
 ```bash
 mv font $PREFIX/bin/
@@ -28,5 +31,7 @@ You can get totally free font from the following link
 https://fontmeme.com/fuentes/fuente-gimp-mousewriting/
 
 # nota 
-
 restart the terminal to load the changes
+```bash
+termux-reload-settings
+```
