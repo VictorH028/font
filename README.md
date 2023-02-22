@@ -16,7 +16,7 @@ git clone https://github.com/VictorH028/font.git
 cd font
 ```
 ```bash
-clang++ font.cpp -o font
+clang++ font.cpp lib/font.cpp -o font -Wall
 ```
 ```bash
 mv font $PREFIX/bin/
