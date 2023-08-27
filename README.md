@@ -10,13 +10,11 @@ apt install git
 
 ## Installation
 ```bash
-git clone https://github.com/VictorH028/font.git 
+git clone https://github.com/VictorH028/font.git && cd font 
 ```
+
 ```bash
-cd font
-```
-```bash
-clang++ font.cpp lib/font.cpp -o font -Wall
+./make
 ```
 ```bash
 mv font $PREFIX/bin/

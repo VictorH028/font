@@ -1,21 +1,39 @@
- #include "font.h"
+#include "font.h"
+#include <cstdlib>
+#include <filesystem>
 
-using namespace _font;
+namespace fs = std::filesystem;
 
- void ter_font::backup_font(){
-     std::__fs::filesystem::copy(ORI,BACK);
-     std::remove(ORI);
+/*
+.*     
+ */
+void font::font::backup_font(){
+     if (fs::exists(m_ori)) {
+        fs::rename(m_ori,m_back);
+     };
 };
-void  ter_font::restore_font(){
-  std::remove(ORI);
-  std::__fs::filesystem::copy(BACK, ORI);
-  std::remove(BACK);
-};
-void ter_font::show_help(){
-    std::cout<<"Usage:\n\tfont [OPTIONS] [PATH]"<<std::endl;
-    std::cout<<"OPTIONS:"<<std::endl;
-    std::cout<<"\t--change      <path to fontfile.ttf>"<<std::endl;
-    std::cout<<"\t--restore     (revert to previous font)"<<std::endl;
-    std::cout<<"\t--help        display this help and exit"<<std::endl;
+/*
+.*     
+ */
+void  font::font::font::restore_font(){
+   if (fs::exists(m_back)) {
+       std::cout << "[*] Restoring" << std::endl;
+       fs::rename(fs::path{m_back}, fs::path{m_ori});
+   } else {
+       std::cout << "[+]  You already have the restored file" << std::endl;
+       };
 };
 
+
+/*
+.*     
+ */
+void  font::font::change(std::string &p){
+     backup_font();
+     if (fs::exists(p)) {
+        std::cout << "si" << std::endl;
+        fs::copy(p, m_ori);
+    }else {
+        std::cout << "the feli does not exists" << std::endl;
+    };
+};

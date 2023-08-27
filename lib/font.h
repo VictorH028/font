@@ -7,18 +7,19 @@
 #include <filesystem>
 #include <string>
 
-#define BACK "/data/data/com.termux/files/home/.termux/font.ttf.bak"
-#define ORI  "/data/data/com.termux/files/home/.termux/font.ttf"
+// namespace fs = std::filesystem;
 
-
-namespace _font {
-   class ter_font{
-       public://identificador
-	  void show_help();
+namespace font{
+   class font{
+       private:
+    const char *m_back{"/data/data/com.termux/files/home/.termux/font.ttf.bak"};
+    const char *m_ori{"/data/data/com.termux/files/home/.termux/font.ttf"};
 	  void backup_font();
+        public:
 	  void restore_font();
-};
-
+    void change(std::string  &p);
+    //void change(const char &URL);
+  };
 }
 
 #endif 

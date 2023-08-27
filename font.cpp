@@ -1,31 +1,58 @@
 #include "lib/font.h"
-//nombe de espacio 
-using namespace _font;
+#include "lib/optparse.h"
+#include <cstdlib>
+#include <regex>
+
+
+
+void k_boon(int signum){
+  std::cout << "Hola mindo\n"; 
+}
+
 
 int main(int argc,  char *argv[]){
-    ter_font fon;
-    std::string options[]{"--help","--change","--restore"};
-    int done = false;
-    while (!done) {
-       if (argc == 1) {
-      fon.show_help();
-	   done=true;
-       }else if (argv[1]==options[0]) {
-      fon.show_help();
-	   done=true;
-       }else if (argv[1]==options[1]) {
-       fon.backup_font();
-	 std::__fs::filesystem::copy(argv[2], ORI);
-	 done=true;
-       }else if (argv[1]==options[2]) {
-      fon.restore_font();
-	 done=true;
-       }else {
-      fon.show_help();
-	    done=true;
-       }
-   done=true; 
-    }
+  
+    const std::string usage = "Usage: %prog [OPCION]... "; 
+    const std::string version = "";
+    const std::string dect  = "";
 
-return 0;
+    optparse::OptionParser parser = optparse::OptionParser()
+    .usage(usage)
+    .version(version)
+    .description(dect);
+
+    parser.add_option("--change")
+     .metavar("PATH")
+     .help("change font");
+
+    parser.add_option("--restore")
+      .action("store_false")
+      .help("resver to previous font");
+      
+    const optparse::Values &options = parser.parse_args(argc, argv);
+    const std::vector<std::string> args = parser.args();
+
+    font::font fon;
+
+    if(size(args) != 1){
+      std::cout << parser.usage() << std::endl;
+      exit(0);
+    }
+    // buscando 
+    std::string _arg;    
+    for (std::vector<std::string>::const_iterator it = args.begin(); it != args.end(); ++it)
+    {
+        _arg = *it;
+    }
+    // (exprecion regular)
+    const std::regex txt_ttf{".+([a-z]+)\\.ftt"};
+    if(std::regex_match(_arg, txt_ttf)){  
+      fon.change(_arg);
+  }else {
+      parser.error("file.ftt");
+  }
+  if (options.get("restore")) {
+     fon.restore_font();
+  }
+        return 0;
 }
